@@ -1,26 +1,57 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div v-for="rating in ratingUpto" :key=rating>
+    <Rating :rating=rating @handleClick="handleClick"/>
+  </div>
+  <div>
+      Selected stars: {{ JSON.stringify(selectedStars) }}
+  </div>
+  <div v-for="car in selectedCars" :key=car.name>
+    <p>{{ car.name }} - {{ car.stars }}</p>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Rating from '@/components/Rating';
+import Data from '@/data';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Rating
+  },
+  data() {
+    return {
+      ratingUpto: 5,
+      carsData: Data,
+      selectedStars: [5]
+    }
+  },
+  computed: {
+    selectedCars : function() {
+       if ( this.selectedStars.length) {
+         return this.carsData.filter((d) => this.selectedStars.includes(d.stars)).sort((a, b) => a.stars - b.stars);
+       }
+       return this.carsData;
+    }
+  },
+  methods: {
+    handleClick(rating) {
+      const index = this.selectedStars.indexOf(rating);
+      if(index >= 0) {
+          this.selectedStars.splice(index, 1);
+      } else {
+        this.selectedStars.push(rating);
+      }
+     }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+<style scoped>
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

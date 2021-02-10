@@ -1,0 +1,34 @@
+ [
+    {
+      "name": "Maruti Suzuki MG Motor",
+      "stars": 3
+    },
+    {
+      "name": "Hyundai Honda",
+      "stars": 2
+    },
+    {
+      "name": "Toyota Mahindra",
+      "stars": 1
+    },
+    {
+      "name": "Tata Kia",
+      "stars": 5
+    },
+    {
+      "name": "Jeep Volkswagen",
+      "stars": 4
+    },
+    {
+      "name": "BMW Audi",
+      "stars": 3
+    },
+    {
+      "name": "Mercedes Benz Skoda",
+      "stars": 2
+    },
+    {
+      "name": "Datsun Mitsubishi",
+      "stars": 1
+    }
+  ]
